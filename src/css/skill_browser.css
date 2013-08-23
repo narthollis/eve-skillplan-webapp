@@ -1,0 +1,25 @@
+
+.nav-tree { height: 100%; overflow: auto; }
+.nav-tree > li > a:before {
+    position: relative;
+    /*top: 2px;*/
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    content: "\2b";
+    font-size: 80%; 
+}
+.nav-tree li a { padding: 3px 5px; }
+.nav-tree li ul { margin-left: 10px; }
+.nav-tree li li a { padding: 2px 5px; font-size: 90%; }
+
+#skillPanel span.rank { font-size: 80%; margin: 0 10px; }
+#skillPanel h4 { display: inline-block; margin-right: 12px; margin-top: 0; }
+#skillPanel ul { list-style: none; list-style-type: none; padding-left: 20px; }
+
+.history { position: absolute; top: 0; right: 0; }
+.history span { margin: 10px; color: #ddd; }
+.history span.active { cursor: pointer; color: #000; }
