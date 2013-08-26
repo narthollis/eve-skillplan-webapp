@@ -1,8 +1,11 @@
 "use strict";
 
 (function( $ ) {
-    var complete = function( path, param_str, callback, xml, status, jqXHR ) {
-        if (status != "success") return;
+    var complete = function( path, param_str, callback, error_callback, xml, status, jqXHR ) {
+        if (status != "success") {
+            error_callback(xml, status, jqXHR);
+            return false;
+        }
 
         var expires = xml.getElementsByTagName('cachedUntil')[0].childNodes[0].data;
 
@@ -17,7 +20,7 @@
         callback(xml);
     };
 
-    $.fn.eve_api = function( path, params, callback ) {
+    $.fn.eve_api = function( path, params, callback, error_callback ) {
         var param_str = JSON.stringify(params);
 
         if (window.localStorage.hasOwnProperty('_eve_api_cache_' + path + param_str)) {
@@ -42,13 +45,13 @@
         }
 
         //$.ajax('https://api.eveonline.com/' + path, {
-        $.ajax('http://eveapinarth.appspot.com/' + path, {
+        $.ajax('https://eveapinarth.appspot.com/' + path, {
             'data': params,
             /*'dataType': 'text',*/
             'type': 'POST'
         }).always(
             function(xml, status, jqXHR) {
-                complete(path, param_str, callback, xml, status, jqXHR);
+                complete(path, param_str, callback, error_callback, xml, status, jqXHR);
             }
         );
     };
