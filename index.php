@@ -44,17 +44,11 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav">
+                        <li><a data-toggle="modal" href="#api_model">Manage API Keys</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Characters <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li><a href="#">Separated link</a></li>
-                                <li><a href="#">One more separated link</a></li>
-                            </ul>
+                            <ul class="dropdown-menu" id="character_menu"></ul>
                         </li>
-                        <li><a data-toggle="modal" href="#api_model">Manage API Keys</a></li>
                     </ul>
                 </div>
             </nav>

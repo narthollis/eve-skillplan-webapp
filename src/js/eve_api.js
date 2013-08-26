@@ -4,20 +4,19 @@
     var complete = function( path, param_str, callback, error_callback, xml, status, jqXHR ) {
         if (status != "success") {
             error_callback(xml, status, jqXHR);
-            return false;
+        } else {
+            var expires = xml.getElementsByTagName('cachedUntil')[0].childNodes[0].data;
+
+            var match = expires.match(/^(\d+)-(\d+)-(\d+) (\d+)\:(\d+)\:(\d+)$/);
+            var expires = new Date(match[1], match[2] - 1, match[3], match[4], match[5], match[6]).getTime()/1000;
+
+            window.localStorage['_eve_api_cache_' + path + param_str] = JSON.stringify({
+                'expires': expires,
+                'responseText': jqXHR.responseText.toString()
+            });
+
+            callback(xml);
         }
-
-        var expires = xml.getElementsByTagName('cachedUntil')[0].childNodes[0].data;
-
-        var match = expires.match(/^(\d+)-(\d+)-(\d+) (\d+)\:(\d+)\:(\d+)$/);
-        var expires = new Date(match[1], match[2] - 1, match[3], match[4], match[5], match[6]).getTime()/1000;
-
-        window.localStorage['_eve_api_cache_' + path + param_str] = JSON.stringify({
-            'expires': expires,
-            'responseText': jqXHR.responseText.toString()
-        });
-
-        callback(xml);
     };
 
     $.fn.eve_api = function( path, params, callback, error_callback ) {
