@@ -141,11 +141,11 @@
         <script type="text/javascript">$('#api_model').api_panel();</script>
 
         <footer class="navbar navbar-inverse navbar-fixed-bottom">
-            <p class="navbar-text">Copyright 2013 Nicholas Steicke</p>
-            <p class="navbar-text">Find this on GitHub:
-                <a href="https://github.com/narthollis/eve-skillplan-webapp">Skill Plan Webapp</a> and
+            <p class="navbar-text">Fork me on GitHub:
+                <a href="https://github.com/narthollis/eve-skillplan-webapp">Skill Plan Webapp</a>,
                 <a href="https://github.com/narthollis/eve-api-proxy">EVE API Proxy</a>
             </p>
+            <p class="navbar-text">Copyright 2013 Nicholas Steicke</p>
             <p class="navbar-text pull-right">Tea makes code.</p>
         </footer>
     </body>
