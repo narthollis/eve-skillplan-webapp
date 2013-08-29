@@ -15,15 +15,26 @@
         <link rel="stylesheet" type="text/css" href="src/css/character_overview.css" />
         <link rel="stylesheet" type="text/css" href="src/css/skill_browser.css" />
 
+        <!-- Libraries -->
         <script type="text/javascript" src="lib/jquery-2.0.3.js"></script>
         <script type="text/javascript" src="lib/jquery.tinysort.min.js"></script>
+        <script type="text/javascript" src="lib/jquery.scrollTo.min.js"></script>
         <script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>
         <script type="text/javascript" src="lib/romanize.js"></script>
+        <script type="text/javascript" src="lib/inheritance.js"></script>
 
+
+        <!-- Data -->
         <script type="text/javascript" src="ccp/skills.json"></script>
 
+        <!-- Core Scripts -->
         <script type="text/javascript" src="src/js/eve_api.js"></script>
 
+        <!-- Storage -->
+        <script type="text/javascript" src="src/js/storage/manager.js"></script>
+        <script type="text/javascript" src="src/js/storage/accounts.js"></script>
+
+        <!-- Scripts -->
         <script type="text/javascript" src="src/js/character_sheet.js"></script>
         <script type="text/javascript" src="src/js/skill_browser.js"></script>
     </head>
