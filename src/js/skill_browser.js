@@ -108,7 +108,16 @@
 
     };
 
-    var displaySkill = function( skill_id ) {
+    var displaySkill = function( skill_id, click_from_tree ) {
+        tree_panel.find('li').removeClass('active');
+        var tree_entry = tree_panel.find('[data-skill="' + skill_id + '"]');
+        tree_entry.parent().addClass('active');
+        tree_entry.parent().parent().collapse('show');
+
+        if (click_from_tree !== true) {
+            setTimeout(function() { tree_panel.scrollTo(tree_entry);}, 200);
+        }
+    
         var skill = CCP.EVE.Skills[skill_id];
 
         var html = '<h3>' + skill['name'] + '<span class="rank">(Rank ' + skill['rank'] + ')</span></h3>';
@@ -130,7 +139,7 @@
     };
 
     var onSkillTreeClick = function( event ) {
-        displaySkill(event.currentTarget.dataset.skill);
+        displaySkill(event.currentTarget.dataset.skill, $(event.currentTarget).parents('#skillTreeTree').length > 0);
 
         addHistory(event.currentTarget.dataset.skill);
 
@@ -152,7 +161,7 @@
             li = li + '</a></li>';
             li = $(li)
 
-            var ul = $('<ul class="nav collapse" id="skill_group_id_' + group_id + '"></ul>');
+            var ul = $('<ul class="nav nav-pills nav-stacked collapse" id="skill_group_id_' + group_id + '"></ul>');
 
             for (var i in CCP.EVE.SkillGroups[group_id]['skills']) {
                 var skill =  CCP.EVE.Skills[CCP.EVE.SkillGroups[group_id]['skills'][i]];
