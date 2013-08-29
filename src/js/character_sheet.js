@@ -1,3 +1,4 @@
+
 (function( $ ) {
     var mdoel = null;
     var body = null;
@@ -51,12 +52,11 @@
         var key = form.find('input[name=key]').val()
         var vcode = form.find('input[name=vcode]').val()
 
-        $.fn.eve_api(
-            'account/APIKeyInfo.xml',
-            {'keyID': key, 'vCode': vcode},
-            function(xml) { apiKeyVerificationResault(xml, form); },
-            function(jqXHR, status, responseText) { apiKeyVerificationFailure(form); }
-        );
+        $.fn.eve_api('account/APIKeyInfo.xml', {
+            'params': {'keyID': key, 'vCode': vcode},
+            'callback': function(xml) { apiKeyVerificationResault(xml, form); },
+            'error_callback': function(jqXHR, status, responseText) { apiKeyVerificationFailure(form); }
+        });
 
         return false;
     };
@@ -74,50 +74,65 @@
         var key = form.find('input[name=key]').val()
         var vcode = form.find('input[name=vcode]').val()
 
-        $(form.find('input[name=key]').parent()).remove();
-        $(form.find('input[name=vcode]').parent()).remove();
-        form.find('button').remove();
+        var acc = Account.fromAPIKeyInfoResponse(name, key, vcode, xml);
+        acc.save();
 
-        var rows = document.evaluate(
-                '/eveapi/result/key/rowset/row',
-                xml,
-                null,
-                XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
-                null
-            );
+        $(form).remove();
 
-        for ( var i=0 ; i < rows.snapshotLength; i++ ) {
-            var charID = $.trim($(rows.snapshotItem(i)).attr('characterID'));
-            var charName = $.trim($(rows.snapshotItem(i)).attr('characterName'));
-            var corpName = $.trim($(rows.snapshotItem(i)).attr('corporationName'));
-
-            var checkbox = '<div class="checkbox">';
-            checkbox+='<label for="char_' + charID +'">';
-            checkbox+='<input type="checkbox" id="char_' + charID +'" value="' + charID + '">';
-            checkbox+= charName + ' (' + corpName + ')'
-            checkbox+='</label></div>';
-
-            form.append($(checkbox));
-        }
-
-        var button = $('<button type="submit" class="btn btn-primary pull-right" data-loading-text="Saving...">Save</button>');
-        form.append(button);
-
-        form.unbind('submit');
-        form.bind('submit', saveCharacterAndAPI);
+        drawAPIPanel()
     };
 
     var saveCharacterAndAPI = function( event ) {
         event.stopPropagation();
         event.preventDefault();
 
-        //TODO: Upto here marker
 
         var form = $(event.currentTarget);
     };
 
-    var drawExistingKey = function( key ) {
+    var drawAccount = function(account) {
+        var accForm = $('<form></form>');
+        body.append(accForm);
 
+        var fieldset = $('<fieldset></fieldset>');
+        accForm.append(fieldset);
+
+        var legend = $('<legend>' + account.name + '</legend>');
+        fieldset.append(legend);
+
+        var refresh = $('<button type="button" class="btn btn-sm btn-default pull-right" data-loading-text="Refreshing...">Refresh</button>');
+        legend.append(refresh);
+
+        refresh.bind('click', function(event) {
+                $(event.currentTarget).button('loading');
+                account.loadCharactersFromAPI(drawAPIPanel);
+            });
+
+        for (var i in account.characters) {
+            if (!account.characters.hasOwnProperty(i)) continue;
+
+            var checkbox = '<div class="checkbox">';
+            checkbox+='<label for="account_' + account.key + '_' + account.characters[i].characterID + '">';
+            checkbox+='<input type="checkbox" value="' + account.characters[i].characterID + '"';
+            checkbox+=' id="account_' + account.key + '_' + account.characters[i].characterID + '"';
+            if (account.characters[i].display) {
+                checkbox+=' checked="checked"';
+            }
+            checkbox+='>' + account.characters[i].characterName + ' (';
+            checkbox+=account.characters[i].corporationName + ')</label>';
+            checkbox+='</div>';
+
+            fieldset.append($(checkbox));
+        }
+    };
+
+    var drawAPIPanel = function( ) {
+        body.empty();
+
+        var accounts = Account.Manager.all();
+        for (var i=accounts.length-1; i>=0; i--) {
+            drawAccount(accounts[i]);
+        }
     };
 
     $.fn.api_panel = function( ) {
@@ -126,13 +141,8 @@
         body = model.find('.modal-body');
 
         $(model.find('button#api_manage_new')[0]).bind('click', newApiKeyForm);
-        
-        if (!window.localStorage.hasOwnProperty('api_keys')) window.localStorage = [];
 
-        for (var i in window.localStorage['api_keys']) {
-            drawExistingKey(window.localStorage['api_keys'][i]);
-        }
-
+        drawAPIPanel();
     };
 
 })( jQuery );
