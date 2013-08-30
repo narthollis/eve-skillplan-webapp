@@ -49,6 +49,13 @@ Manager.prototype.save = function(id, object) {
 
     // ... And Store the object
     window.localStorage[this.storage_name + '_' + id] = JSON.stringify(object);
+
+    // Trigger a Custom Event to notify that an object has changed.
+    $.event.trigger({
+            'type': this.storage_name + '_Save',
+            'id': id,
+            'object': object
+        });
 };
 
 Manager.prototype.delete = function(id) {
@@ -65,7 +72,9 @@ Manager.prototype.delete = function(id) {
     window.localStorage[this.storage_name] = JSON.stringify(this.index);
 };
 
-Manager.prototype.toString
+Manager.prototype.toString = function() {
+    return '<Manager (' + this.storage_name + ')>';
+};
 
 
 var GenericObject = function(id, params, from_store) {
