@@ -16,12 +16,16 @@
         <link rel="stylesheet" type="text/css" href="src/css/skill_browser.css" />
 
         <!-- Libraries -->
+        <script type="text/javascript" src="lib/idbstore.min.js"></script>
+        <script type="text/javascript" src="lib/handlebars.js"></script>
+
         <script type="text/javascript" src="lib/jquery-2.0.3.js"></script>
         <script type="text/javascript" src="lib/jquery.tinysort.min.js"></script>
         <script type="text/javascript" src="lib/jquery.scrollTo.min.js"></script>
+
         <script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>
+
         <script type="text/javascript" src="lib/romanize.js"></script>
-        <script type="text/javascript" src="lib/inheritance.js"></script>
 
 
         <!-- Data -->
@@ -31,12 +35,12 @@
         <script type="text/javascript" src="src/js/eve_api.js"></script>
 
         <!-- Storage -->
-        <script type="text/javascript" src="src/js/storage/manager.js"></script>
-        <script type="text/javascript" src="src/js/storage/accounts.js"></script>
+        <script type="text/javascript" src="src/js/storage.js"></script>
 
         <!-- Scripts -->
-        <script type="text/javascript" src="src/js/character_sheet.js"></script>
         <script type="text/javascript" src="src/js/skill_browser.js"></script>
+        
+        <script type="text/javascript" src="src/js/accounts.js"></script>
     </head>
     <body class="row">
         <div class="alpha danger">!! THIS IS IN ALPHA !!</div>
@@ -149,7 +153,7 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-        <script type="text/javascript">$('#api_model').api_panel();</script>
+        <script type="text/javascript">new net.narthollis.eve.skillplan.Account.ManagmentPanel($('#api_model'));</script>
 
         <footer class="navbar navbar-inverse navbar-fixed-bottom">
             <p class="navbar-text">Fork me on GitHub:
