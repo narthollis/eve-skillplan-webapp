@@ -41,6 +41,7 @@
         <script type="text/javascript" src="src/js/skill_browser.js"></script>
         
         <script type="text/javascript" src="src/js/accounts.js"></script>
+        <script type="text/javascript" src="src/js/characters.js"></script>
     </head>
     <body class="row">
         <div class="alpha danger">!! THIS IS IN ALPHA !!</div>
@@ -63,6 +64,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Characters <b class="caret"></b></a>
                             <ul class="dropdown-menu" id="character_menu"></ul>
+                            <script type="text/javascript">new net.narthollis.eve.skillplan.Characters.Menu($('#character_menu'));</script>
                         </li>
                     </ul>
                 </div>
