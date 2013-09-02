@@ -181,8 +181,6 @@ net.narthollis.eve.skillplan.Account.ManagmentPanel.prototype.onAccountRefreshCl
 net.narthollis.eve.skillplan.Account.ManagmentPanel.prototype.onAccountRemoveClick = function(event) {
     var key = $(event.currentTarget).parents('form')[0].dataset.accountKey;
 
-    console.log(key);
-
     net.narthollis.eve.skillplan.Storage.Account.remove(key,
             function() { $.event.trigger({'type': 'account_removed', 'key': key}); }
         );
