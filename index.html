@@ -71,42 +71,24 @@
             </nav>
         </header>
 
-        <article class="col-lg-5">
+        <article class="col-lg-5" id="characterSheet">
             <ul class="nav nav-tabs" id="characterTabs">
                 <li class="active"><a href="#overview" data-toggle="tab">Overview</a></li>
-                <li><a href="#skillQueue" data-toggle="tab">Skill Queue</a></li> 
+                <li><a href="#skill_queue" data-toggle="tab">Skill Queue</a></li> 
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Skill Plans <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#planTestA" data-toggle="tab">Test A</a></li>
-                        <li><a href="#planTestA" data-toggle="tab">Test B</a></li>
-                        <li><a href="#planTestA" data-toggle="tab">Test C</a></li>
-                        <li><a href="#planTestA" data-toggle="tab">Test D</a></li>
+                    <ul class="dropdown-menu" id="skill_plan_menu">
+                        <li><a href="#">New Skill Plan</a></li>
+                        <li class="divider"></li>
                     </ul>
                 </li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane active" id="overview">
-                    <div class="character_info">
-                        <div class="logos">
-                            <img class="character" src="http://image.eveonline.com/Character/1519722524_256.jpg" />
-                            <img class="corporation" src="http://image.eveonline.com/Corporation/1063360566_128.png" />
-                            <img class="alliance" src="http://image.eveonline.com/Alliance/1354830081_128.png" />
-                        </div>
-                        <dl>
-                            <dt>Name</dt><dd>narthollis</dd>
-                            <dt>Corporation</dt><dd>&lt;F3AR&gt; SUNDERING</dd>
-                            <dt>Alliance</dt><dd>[CONDI] GoonSwarm Federation</dd>
-                        </dl>
-                    </div>
-                </div>
-                <div class="tab-pane" id="skillQueue"></div>
-                <div class="tab-pane" id="planTestA"></div>
-                <div class="tab-pane" id="planTestB"></div>
-                <div class="tab-pane" id="planTestC"></div>
-                <div class="tab-pane" id="planTestD"></div>
+                <div class="tab-pane active" id="overview"></div>
+                <div class="tab-pane" id="skill_queue"></div>
             </div>
         </article>
+        <script type="text/javascript">net.narthollis.eve.skillplan.Characters.CharacterSheet.DOM_ROOT = $('#characterSheet');</script>
 
         <aside class="col-lg-7 tab-content">
             <ul class="nav nav-tabs" id="browserTabs">
