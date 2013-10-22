@@ -1,5 +1,42 @@
 
-div.logos { width: 320px; height: 220px; position: relative; float: right; }
-div.logos img.character { width: 200px; height: 200px; position: absolute; top: 10px; left: 10px; }
-div.logos img.corporation { width: 90px; height: 90px; position: absolute; top: 10px; right: 10px; }
-div.logos img.alliance    { width: 90px; height: 90px; position: absolute; bottom: 10px; right: 10px; }
+div.logos { width: 320px; height: 220px; position: relative; float: left; }
+div.logos img.character { width: 200px; height: 200px; position: absolute; top: 10px; right: 10px; }
+div.logos img.corporation { width: 90px; height: 90px; position: absolute; top: 10px; left: 10px; }
+div.logos img.alliance    { width: 90px; height: 90px; position: absolute; bottom: 10px; left: 10px; }
+
+div.character_info dl { width: calc(100% - 320px); float: right; }
+div.character_info dl dt { width: 110px; text-transform: capitalize; }
+div.character_info dl dd { margin-left: 120px; }
+div.character_info dl dd small { padding: 0 5px; }
+
+article#characterSheet div.tab-content { height: 100%; }
+article#characterSheet div.tab-pane { height: 100%; overflow: auto; padding-top: 10px; }
+
+article#characterSheet .panel-title { font-size: 14px; }
+article#characterSheet .skill_count { width: 90px; white-space: nowrap; }
+article#characterSheet .total_skillpoints { width: 1%; white-space: nowrap; }
+
+.skillpoints { text-align: right; }
+
+.skill_level span { color: transparent; }
+
+.skill_level.level_1 span:nth-child(1) { color: inherit; }
+.skill_level.level_2 span:nth-child(2),
+    .skill_level.level_2 span:nth-child(1) { color: inherit; }
+.skill_level.level_3 span:nth-child(3),
+    .skill_level.level_3 span:nth-child(2),
+    .skill_level.level_3 span:nth-child(1) { color: inherit; }
+.skill_level.level_4 span:nth-child(4),
+    .skill_level.level_4 span:nth-child(3),
+    .skill_level.level_4 span:nth-child(2),
+    .skill_level.level_4 span:nth-child(1) { color: inherit; }
+.skill_level.level_5 span:nth-child(5),
+    .skill_level.level_5 span:nth-child(4),
+    .skill_level.level_5 span:nth-child(3),
+    .skill_level.level_5 span:nth-child(2),
+    .skill_level.level_5 span:nth-child(1) { color: inherit; }
+
+.skill_level.level_1.moresp span:nth-child(2) { color: #777777; }
+.skill_level.level_2.moresp span:nth-child(3) { color: #777777; }
+.skill_level.level_3.moresp span:nth-child(4) { color: #777777; }
+.skill_level.level_4.moresp span:nth-child(5) { color: #777777; }
