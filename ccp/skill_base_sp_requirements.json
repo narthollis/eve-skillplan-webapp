@@ -1,0 +1,1 @@
+if(typeof(CCP)=='undefined') var CCP={};if(typeof(CCP.EVE)=='undefined') CCP.EVE={};CCP.EVE.BaseSPRequirements = [250,1414,8000,45255,256000];
