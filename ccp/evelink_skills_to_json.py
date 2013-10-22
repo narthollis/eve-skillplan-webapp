@@ -17,9 +17,13 @@ def build_skillplan_webapp_staticfiles():
         groups[group_id]['name'] = group['name']
         groups[group_id]['id'] = group_id
         groups[group_id]['skills'] = [];
+        groups[group_id]["published"] = [];
 
         for skill_id, skill in group['skills'].items():
             groups[group_id]['skills'].append(skill_id)
+
+            if skill["published"]:
+                groups[group_id]["published"].append(skill_id)
 
             skills[skill_id] = skill
 
